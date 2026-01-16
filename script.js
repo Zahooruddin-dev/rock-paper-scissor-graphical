@@ -9,6 +9,11 @@ let chooseOfMachine;
 
 let heartsPlayer = 5;
 let heartsComputer = 5;
+const audiobg = document.getElementById("bgm");
+
+document.addEventListener("click", () => {
+  audiobg.play();
+}, { once: true });
 
 
 
