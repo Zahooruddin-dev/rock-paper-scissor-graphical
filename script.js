@@ -10,6 +10,7 @@ let chooseOfMachine;
 let heartsPlayer = 5;
 let heartsComputer = 5;
 const audiobg = document.getElementById("bgm");
+audiobg.volume = 0.2;
 
 document.addEventListener("click", () => {
   audiobg.play();
