@@ -4,7 +4,7 @@ export async function matchAnimation(player: string, computer: string){
     const chooses = document.querySelector("#chooses") as HTMLDivElement;
     let playerCard: string;
     let computerCard: string;
-    let result: string;
+    let result: string | boolean;
 
     const playerHearts = document.querySelector("#p1") as HTMLDivElement;
     const computerHearts = document.querySelector("#p2") as HTMLDivElement;
@@ -72,7 +72,7 @@ export async function matchAnimation(player: string, computer: string){
         if (result === "player"){
             stopCharAnimation();
 
-            const playerChar = document.querySelector("#sprite1 img");
+            const playerChar = document.querySelector("#sprite1 img") as HTMLImageElement;
             
             let count = 0;
             const interval = setInterval(() => {
@@ -85,8 +85,8 @@ export async function matchAnimation(player: string, computer: string){
             }, 500);
 
             try{
-                computerHearts.removeChild(computerHearts.firstChild);
-                computerHearts.removeChild(computerHearts.firstChild);
+                computerHearts.removeChild(computerHearts.firstChild!);
+                computerHearts.removeChild(computerHearts.firstChild!); // temporary solution to remove 2 hearts at once, will be fixed in the future with if statements 
                 if (computerHearts.childNodes.length <= 1){
                     throw new Error("Last Heart");
                 }
@@ -106,7 +106,7 @@ export async function matchAnimation(player: string, computer: string){
         } else if (result === "computer"){
             stopCharAnimation();
 
-            const computerChar = document.querySelector("#sprite2 img");
+            const computerChar = document.querySelector("#sprite2 img") as HTMLImageElement;
             
             let count = 0;
             const interval = setInterval(() => {
