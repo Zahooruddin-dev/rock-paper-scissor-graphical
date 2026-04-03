@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<title>Rule of three Miuzka Typescript</title>
 		<link rel="stylesheet" href="style.css" />
 		<script type="module" src="../dist/main.js" defer></script>
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 	</head>
 	<body>
 		<audio id="bgm" loop>
@@ -29,23 +29,7 @@
 				/>
 			</div>
 		</div>
-		<div id="winner">
-			<img
-				id="result"
-				src="./img/resultsOfGame/Player win.png"
-				alt="placeholder"
-			/>
-			<img
-				id="restartMessage"
-				src="./img/resultsOfGame/Reload the page for restart.png"
-				alt="placeholder"
-			/>
-			<img
-				id="joke"
-				src="./img/resultsOfGame/rick-roll.png"
-				alt="placeholder"
-			/>
-		</div>
+
 		<div id="container2">
 			<div id="player" class="characters">
 				<div id="p1" class="hearts">
@@ -64,6 +48,7 @@
 					<img id="scissor" src="./img/scissor.png" alt="scissor" />
 				</div>
 			</div>
+
 			<div id="cards">
 				<img
 					id="playerCardChoose"
@@ -76,6 +61,7 @@
 					alt="rock"
 				/>
 			</div>
+
 			<div id="computer" class="characters">
 				<div id="p2" class="hearts">
 					<img src="./img/singleHeartRed.png" alt="hearts" />
@@ -90,6 +76,24 @@
 						alt="computer char"
 					/>
 				</div>
+			</div>
+
+			<div id="winner">
+				<img
+					id="result"
+					src="./img/resultsOfGame/Player win.png"
+					alt="winner result"
+				/>
+				<img
+					id="restartMessage"
+					src="./img/resultsOfGame/Reload the page for restart.png"
+					alt="restart message"
+				/>
+				<img
+					id="joke"
+					src="./img/resultsOfGame/rick-roll.png"
+					alt="rick roll"
+				/>
 			</div>
 		</div>
 	</body>
