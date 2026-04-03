@@ -1,4 +1,4 @@
-import { matchAnimation } from './scripts/matchLogic.js';
+import { matchAnimation } from './scripts/matchLogic.ts';
 
 const chooses = document.querySelector('#chooses') as HTMLDivElement;
 const audio = document.querySelector('audio') as HTMLAudioElement;
@@ -48,8 +48,9 @@ chooses.addEventListener('click', async (e) => {
 chooses.addEventListener('mouseover', (e) => {
 	const audioHover = new Audio('./music/hoverAudio.mp3');
 	audioHover.volume = 1;
+	const target = e.target as HTMLImageElement;
 
-	switch (e.target.alt as string) {
+	switch (target.alt) {
 		case 'rock':
 			audioHover.play();
 			break;
