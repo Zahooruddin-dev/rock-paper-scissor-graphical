@@ -1,46 +1,42 @@
-const body = document.querySelector('body') as HTMLBodyElement;
-const rps = document.querySelector('#rps') as HTMLDivElement;
-const startGame = document.querySelector('#start') as HTMLDivElement;
+const body = document.querySelector("body") as HTMLBodyElement;
+const rps = document.querySelector("#rps") as HTMLDivElement;
+const startGame = document.querySelector("#start") as HTMLDivElement;
 
-window.addEventListener('load', () => {
-	smoothScrollTo(0, 0, 0);
-});
+window.addEventListener("load", () => smoothScrollTo(0, 0, 0));
 
-body.addEventListener('click', start);
+body.addEventListener("click", start, { once: true });
 
-function start(e : Event) {
-	if (!rps || !startGame) return;
-	rps.style.transition = 'all 1.2s';
-	rps.style.opacity = '0';
-	startGame.style.transition = 'all 1.2s';
-	startGame.style.opacity = '0';
+function start() {
+    if (!rps || !startGame) return;
 
-	smoothScrollTo(0, 800, 2100);
-	body.removeEventListener('click', start);
+    [rps, startGame].forEach((el) => {
+        el.style.transition = "all 1.2s";
+        el.style.opacity = "0";
+    });
+
+    smoothScrollTo(0, 800, 2100);
 }
 
-function smoothScrollTo(endX: number, endY: number, duration: number) {
-	const startX = window.scrollX || window.pageXOffset;
-	const startY = window.scrollY || window.pageYOffset;
-	const distanceX = endX - startX;
-	const distanceY = endY - startY;
-	const startTime = new Date().getTime();
+function easeInOutQuart(time: number, from: number, distance: number, duration: number): number {
+    time /= duration / 2;
+    if (time < 1) return (distance / 2) * time * time * time * time + from;
+    time -= 2;
+    return (-distance / 2) * (time * time * time * time - 2) + from;
+}
 
-	duration = typeof duration !== 'undefined' ? duration : 400;
+function smoothScrollTo(endX: number, endY: number, duration: number = 400) {
+    const startX = window.scrollX;
+    const startY = window.scrollY;
+    const distanceX = endX - startX;
+    const distanceY = endY - startY;
+    const startTime = performance.now();
 
-	const easeInOutQuart = (time: number, from: number, distance: number, duration: number) => {
-		if ((time /= duration / 2) < 1)
-			return (distance / 2) * time * time * time * time + from;
-		return (-distance / 2) * ((time -= 2) * time * time * time - 2) + from;
-	};
-
-	const timer = setInterval(() => {
-		const time = new Date().getTime() - startTime;
-		const newX = easeInOutQuart(time, startX, distanceX, duration);
-		const newY = easeInOutQuart(time, startY, distanceY, duration);
-		if (time >= duration) {
-			clearInterval(timer);
-		}
-		window.scroll(newX, newY);
-	}, 1000 / 60);
+    const timer = setInterval(() => {
+        const time = performance.now() - startTime;
+        window.scroll(
+            easeInOutQuart(time, startX, distanceX, duration),
+            easeInOutQuart(time, startY, distanceY, duration)
+        );
+        if (time >= duration) clearInterval(timer);
+    }, 1000 / 60);
 }
