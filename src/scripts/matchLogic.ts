@@ -42,17 +42,17 @@ export async function matchAnimation(player: string, computer: string) {
 	computerCard.setAttribute('src', getCard(computer));
 	computerCard.setAttribute('alt', computer);
 
-	playerCard.style.top = '0rem';
-	computerCard.style.bottom = '0rem';
-	playerCard.style.opacity = '100%';
-	computerCard.style.opacity = '100%';
+playerCard.style.transform = 'translateY(0)';
+    computerCard.style.transform = 'translateY(0)';
+    playerCard.style.opacity = '1';
+    computerCard.style.opacity = '1';
 
-	await sleep(2000);
+    await sleep(2000);
 
-	playerCard.style.top = '-12rem';
-	computerCard.style.bottom = '-12rem';
-	playerCard.style.opacity = '0%';
-	computerCard.style.opacity = '0%';
+    playerCard.style.transform = 'translateY(-100%)';
+    computerCard.style.transform = 'translateY(100%)';
+    playerCard.style.opacity = '0';
+    computerCard.style.opacity = '0';
 
 	const result = winnerOfMatch(player, computer);
 
@@ -72,6 +72,8 @@ export async function matchAnimation(player: string, computer: string) {
 	chooses.style.display = 'flex';
 
 	await sleep(2000);
+    playerCard.style.transform = 'translateY(100%)';
+    computerCard.style.transform = 'translateY(-100%)';
 	chooses.style.opacity = '100%';
 	chooses.style.marginTop = '0px';
 	playerCard.style.top = '12rem';
