@@ -1,4 +1,4 @@
-import { startCharAnimation, stopCharAnimation } from "../animationsScripts/animationOfCharacters";
+import { startCharAnimation, stopCharAnimation } from "../animationsScripts/animationOfCharacters.js";
 
 export async function matchAnimation(player: string, computer: string){
     const chooses = document.querySelector("#chooses") as HTMLDivElement;

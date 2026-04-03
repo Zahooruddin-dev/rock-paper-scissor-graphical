@@ -1,4 +1,4 @@
-import { matchAnimation } from './scripts/matchLogic';
+import { matchAnimation } from './scripts/matchLogic.js';
 
 const chooses = document.querySelector('#chooses') as HTMLDivElement;
 const audio = document.querySelector('audio') as HTMLAudioElement;
