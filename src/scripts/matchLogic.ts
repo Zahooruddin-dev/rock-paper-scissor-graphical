@@ -86,19 +86,19 @@ export async function matchAnimation(player: string, computer: string){
 
             try{
                 computerHearts.removeChild(computerHearts.firstChild!);
-                computerHearts.removeChild(computerHearts.firstChild!); // temporary solution to remove 2 hearts at once, will be fixed in the future with if statements 
+                computerHearts.removeChild(computerHearts.firstChild!); // temporary solution to remove 2 hearts at once, will be fixed in the future with if statements to check if the computer has 1 or 2 hearts left
                 if (computerHearts.childNodes.length <= 1){
                     throw new Error("Last Heart");
                 }
             }catch(error){
-                const winnermessage = document.querySelector("#result");
+                const winnermessage = document.querySelector("#result") as HTMLImageElement;
                 winnermessage.setAttribute("src", "./img/resultsOfGame/Player win.png");
 
-                const winner = document.querySelector("#winner");
+                const winner = document.querySelector("#winner") as HTMLDivElement;
                 winner.style.opacity = "100%";
                 winner.style.top = "0rem";
 
-                const container2 = document.querySelector("#container2");
+                const container2 = document.querySelector("#container2") as HTMLDivElement;
                 container2.removeChild("#chooses");
             }
             startCharAnimation();
@@ -119,8 +119,8 @@ export async function matchAnimation(player: string, computer: string){
             }, 500);
                 
             try{
-                playerHearts.removeChild(playerHearts.firstChild);
-                playerHearts.removeChild(playerHearts.firstChild);
+                playerHearts.removeChild(playerHearts.firstChild!);
+                playerHearts.removeChild(playerHearts.firstChild!); // temporary solution to remove 2 hearts at once, will be fixed in the future with if statements to check if the player has 1 or 2 hearts left
                 if (playerHearts.childNodes.length <= 1){
                     throw new Error("Last Heart");
                 }
