@@ -15,7 +15,7 @@ chooses.addEventListener("click", (e) => {
     new Audio("./music/selectedButton.mp3").play();
 
     const playerChoice = target.alt;
-    const machineChoice = MACHINE_CHOICES[Math.floor(Math.random() * MACHINE_CHOICES.length)];
+const machineChoice = MACHINE_CHOICES[Math.floor(Math.random() * MACHINE_CHOICES.length)]!;
 
     matchAnimation(playerChoice, machineChoice);
 });
