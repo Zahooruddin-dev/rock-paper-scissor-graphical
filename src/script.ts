@@ -4,7 +4,7 @@ const chooses = document.querySelector('#chooses') as HTMLDivElement;
 const audio = document.querySelector('audio') as HTMLAudioElement;
 audio.volume = 0.8;
 
-let chooseOfPlayer: string ; 
+let chooseOfPlayer: string;
 let chooseOfMachine: number | string;
 
 let heartsPlayer: number = 5;
@@ -24,7 +24,8 @@ chooses.addEventListener('click', async (e) => {
 	const audioClicked = new Audio('./music/selectedButton.mp3');
 	audioClicked.volume = 1;
 	audioClicked.play();
-	chooseOfPlayer = e.target.alt as string;
+	const target = e.target as HTMLImageElement;
+	chooseOfPlayer = target.alt;
 	chooseOfMachine = Math.floor(Math.random() * 3) + 1;
 
 	switch (chooseOfMachine) {
