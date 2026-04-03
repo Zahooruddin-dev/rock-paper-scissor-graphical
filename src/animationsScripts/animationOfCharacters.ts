@@ -1,7 +1,7 @@
 const char1 = document.querySelector("#sprite1 img") as HTMLImageElement;
 const char2 = document.querySelector("#sprite2 img") as HTMLImageElement;
 
-let continuosAnimationChar;
+let continuosAnimationChar : number;
 
 export function stopCharAnimation(){
     clearInterval(continuosAnimationChar);

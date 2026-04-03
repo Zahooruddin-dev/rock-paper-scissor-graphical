@@ -1,6 +1,6 @@
-const body = document.querySelector('body');
-const rps = document.querySelector('#rps');
-const startGame = document.querySelector('#start');
+const body = document.querySelector('body') as HTMLBodyElement;
+const rps = document.querySelector('#rps') as HTMLDivElement;
+const startGame = document.querySelector('#start') as HTMLDivElement;
 
 window.addEventListener('load', () => {
 	smoothScrollTo(0, 0, 0);
@@ -8,7 +8,7 @@ window.addEventListener('load', () => {
 
 body.addEventListener('click', start);
 
-function start(e) {
+function start(e : Event) {
 	rps.style.transition = 'all 1.2s';
 	rps.style.opacity = 0;
 	startGame.style.transition = 'all 1.2s';
@@ -18,7 +18,7 @@ function start(e) {
 	body.removeEventListener('click', start);
 }
 
-function smoothScrollTo(endX, endY, duration) {
+function smoothScrollTo(endX: number, endY: number, duration: number) {
 	const startX = window.scrollX || window.pageXOffset;
 	const startY = window.scrollY || window.pageYOffset;
 	const distanceX = endX - startX;
@@ -27,7 +27,7 @@ function smoothScrollTo(endX, endY, duration) {
 
 	duration = typeof duration !== 'undefined' ? duration : 400;
 
-	const easeInOutQuart = (time, from, distance, duration) => {
+	const easeInOutQuart = (time: number, from: number, distance: number, duration: number) => {
 		if ((time /= duration / 2) < 1)
 			return (distance / 2) * time * time * time * time + from;
 		return (-distance / 2) * ((time -= 2) * time * time * time - 2) + from;
