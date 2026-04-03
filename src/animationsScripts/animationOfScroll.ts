@@ -9,10 +9,11 @@ window.addEventListener('load', () => {
 body.addEventListener('click', start);
 
 function start(e : Event) {
+	if (!rps || !startGame) return;
 	rps.style.transition = 'all 1.2s';
-	rps.style.opacity = 0;
+	rps.style.opacity = '0';
 	startGame.style.transition = 'all 1.2s';
-	startGame.style.opacity = 0;
+	startGame.style.opacity = '0';
 
 	smoothScrollTo(0, 800, 2100);
 	body.removeEventListener('click', start);
