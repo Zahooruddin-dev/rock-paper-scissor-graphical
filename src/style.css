@@ -1,3 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;600;700&display=swap');
+
+:root {
+    --bg-dark: #0a0a0f;
+    --bg-panel: #10101a;
+    --accent: #c8a84b;
+    --accent-glow: #c8a84b66;
+    --red: #e63946;
+    --blue: #4cc9f0;
+    --white: #f0ece2;
+    --muted: #5a5a7a;
+    --border: #2a2a3a;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -5,128 +19,209 @@
 }
 
 body {
-    background: url("./img/novo-bg.jpg") no-repeat top / cover;
+    background: url("./img/novo-bg.jpg") no-repeat center top / cover fixed;
     width: 100vw;
     max-width: 1360px;
     height: 220vh;
-    transition: all 1.5s ease-in-out;
     overflow-y: hidden;
+    font-family: 'Rajdhani', sans-serif;
+    transition: all 1.5s ease-in-out;
 }
 
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(10,10,15,0.55) 0%, rgba(10,10,15,0.75) 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ── SCREEN 1 : START ─────────────────────────────── */
+
 #container1 {
+    position: relative;
+    z-index: 1;
     display: flex;
     justify-content: center;
-    padding-top: 2rem;
-    height: 115vh;
+    align-items: center;
+    height: 100vh;
 }
 
 #menu {
     display: flex;
     flex-direction: column;
-    gap: 10rem;
-    width: 40vw;
+    align-items: center;
+    gap: 3rem;
 }
 
+#menu img {
+    width: clamp(260px, 38vw, 520px);
+    filter: drop-shadow(0 0 24px var(--accent-glow));
+    animation: floatMenu 3s ease-in-out infinite;
+}
+
+#menu #start {
+    width: clamp(200px, 28vw, 380px);
+    opacity: 0.85;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes floatMenu {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50%       { opacity: 1;   transform: scale(1.04); }
+}
+
+/* ── SCREEN 2 : GAME ──────────────────────────────── */
+
 #container2 {
+    position: relative;
+    z-index: 1;
     display: flex;
     justify-content: center;
-    gap: 4rem;
+    align-items: center;
+    gap: 2.5rem;
+    height: 100vh;
 }
+
+/* ── CHARACTERS ───────────────────────────────────── */
 
 #player,
 #computer {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    width: 15rem;
-    margin-top: 2.5rem;
+    gap: 1.2rem;
+    width: 18rem;
+    background: linear-gradient(160deg, rgba(16,16,26,0.85), rgba(10,10,15,0.7));
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.4rem 1rem;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04);
 }
 
-#cards {
-    width: 20rem;
-    height: 24rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
+/* ── HEARTS ───────────────────────────────────────── */
 
 .hearts {
     display: flex;
-    gap: 2px;
+    gap: 5px;
+    height: 2rem;
 }
 
-.spriteOfCharacters img {
-    width: 7rem;
-    height: 6rem;
-    margin: 2rem;
+.hearts img {
+    width: 1.7rem;
+    height: 1.7rem;
+    filter: drop-shadow(0 0 6px #e6394688);
+    transition: all 0.3s ease;
 }
+
+/* ── SPRITES ──────────────────────────────────────── */
+
+.spriteOfCharacters img {
+    width: 9rem;
+    height: 8rem;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 4px 16px rgba(200,168,75,0.25));
+}
+
+/* ── CHOICES ──────────────────────────────────────── */
 
 #chooses {
     display: flex;
-    justify-content: space-between;
-    width: 18rem;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 0.5rem 0;
+    border-top: 1px solid var(--border);
+    margin-top: 0.5rem;
+    gap: 0.5rem;
 }
 
 #chooses img {
-    width: 3.5rem;
-    height: 3.5rem;
-    transition: all 0.3s ease-out;
-}
-
-#chooses #paper {
-    margin-top: 2rem;
-}
-
-#chooses img:hover {
-    width: 6rem;
-    height: 6rem;
+    width: 4.2rem;
+    height: 4.2rem;
+    transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), filter 0.25s ease;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
     cursor: pointer;
 }
 
+#chooses #paper {
+    margin-top: 1.2rem;
+}
+
+#chooses img:hover {
+    transform: scale(1.45) translateY(-6px);
+    filter: drop-shadow(0 0 14px var(--accent-glow)) brightness(1.2);
+}
+
+/* ── CARDS ────────────────────────────────────────── */
+
+#cards {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 14rem;
+    height: 32rem;
+    position: relative;
+}
+
 #cards img {
-    width: 8rem;
-    height: 12rem;
+    width: 9rem;
+    height: 13rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.6);
 }
 
 #playerCardChoose {
     position: relative;
-    top: 12rem;
+    top: 14rem;
     opacity: 0%;
-    transition: all 0.6s ease-out;
+    transition: all 0.6s cubic-bezier(0.22,1,0.36,1);
 }
 
 #computerCardChoose {
     position: relative;
-    bottom: 12rem;
+    bottom: 14rem;
     opacity: 0%;
-    transition: all 0.6s ease-out;
+    transition: all 0.6s cubic-bezier(0.22,1,0.36,1);
 }
+
+/* ── WINNER OVERLAY ───────────────────────────────── */
 
 #winner {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
-    transition: all 1s ease-in-out;
+    gap: 2rem;
+    position: absolute;
+    inset: 0;
+    z-index: 10;
     opacity: 0%;
     pointer-events: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 45vh;
-    z-index: 10;
+    transition: opacity 1s ease-in-out;
+    background: radial-gradient(ellipse at center, rgba(10,10,15,0.92) 0%, transparent 80%);
 }
 
 #winner[style*="opacity: 100%"] {
     pointer-events: all;
 }
 
-#container2 {
-    display: flex;
-    justify-content: center;
-    gap: 4rem;
-    position: relative;
+#winner img {
+    width: clamp(180px, 28vw, 420px);
+    filter: drop-shadow(0 0 30px var(--accent-glow));
+    animation: winnerPop 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+@keyframes winnerPop {
+    from { transform: scale(0.6); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
 }
