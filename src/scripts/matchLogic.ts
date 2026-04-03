@@ -1,4 +1,4 @@
-import { startCharAnimation, stopCharAnimation } from "../animationsScripts/animationOfCharacters.js";
+import { startCharAnimation, stopCharAnimation } from "../animationsScripts/animationOfCharacters.ts";
 
 export async function matchAnimation(player: string, computer: string){
     const chooses = document.querySelector("#chooses") as HTMLDivElement;
@@ -99,7 +99,7 @@ export async function matchAnimation(player: string, computer: string){
                 winner.style.top = "0rem";
 
                 const container2 = document.querySelector("#container2") as HTMLDivElement;
-                container2.removeChild("#chooses");
+                container2.removeChild(container2.querySelector("#chooses")!);
             }
             startCharAnimation();
 
@@ -125,15 +125,15 @@ export async function matchAnimation(player: string, computer: string){
                     throw new Error("Last Heart");
                 }
             }catch(error){
-                const winnermessage = document.querySelector("#result");
+                const winnermessage = document.querySelector("#result") as HTMLImageElement;
                 winnermessage.setAttribute("src", "./img/resultsOfGame/Computer win.png");
 
-                const winner = document.querySelector("#winner");
+                const winner = document.querySelector("#winner") as HTMLDivElement;
                 winner.style.opacity = "100%";
                 winner.style.top = "0rem";
 
-                const container2 = document.querySelector("#container2");
-                container2.removeChild("#chooses");
+                const container2 = document.querySelector("#container2") as HTMLDivElement;
+                container2.removeChild(container2.querySelector("#chooses")!);
             }
             startCharAnimation();
         }
@@ -155,7 +155,7 @@ export async function matchAnimation(player: string, computer: string){
 
     
 
-function winnerOfMatch(player, computer){
+function winnerOfMatch(player : string, computer : string) : string | boolean {
     if (player == "rock"){
         if (computer == "rock") {
             return false;
