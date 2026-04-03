@@ -1,66 +1,28 @@
-import { matchAnimation } from './scripts/matchLogic.js';
+import { matchAnimation } from "./scripts/matchLogic.js";
 
-const chooses = document.querySelector('#chooses') as HTMLDivElement;
-const audio = document.querySelector('audio') as HTMLAudioElement;
-audio.volume = 0.8;
+const MACHINE_CHOICES = ["rock", "paper", "scissor"] as const;
 
-let chooseOfPlayer: string;
-let chooseOfMachine: number | string;
-
-let heartsPlayer: number = 5;
-let heartsComputer: number = 5;
-const audiobg = document.getElementById('bgm') as HTMLAudioElement;
+const chooses = document.querySelector("#chooses") as HTMLDivElement;
+const audiobg = document.getElementById("bgm") as HTMLAudioElement;
 audiobg.volume = 0.2;
 
-document.addEventListener(
-	'click',
-	() => {
-		audiobg.play();
-	},
-	{ once: true },
-);
+document.addEventListener("click", () => audiobg.play(), { once: true });
 
-chooses.addEventListener('click', async (e) => {
-	const audioClicked = new Audio('./music/selectedButton.mp3');
-	audioClicked.volume = 1;
-	audioClicked.play();
-	const target = e.target as HTMLImageElement;
-	chooseOfPlayer = target.alt;
-	chooseOfMachine = Math.floor(Math.random() * 3) + 1;
+chooses.addEventListener("click", (e) => {
+    const target = e.target as HTMLImageElement;
+    if (!MACHINE_CHOICES.includes(target.alt as typeof MACHINE_CHOICES[number])) return;
 
-	switch (chooseOfMachine) {
-		case 1:
-			chooseOfMachine = 'rock';
-			break;
-		case 2:
-			chooseOfMachine = 'paper';
-			break;
-		case 3:
-			chooseOfMachine = 'scissor';
-			break;
-		default:
-			console.log('Choose a valid value');
-			break;
-	}
-	matchAnimation(chooseOfPlayer, chooseOfMachine as string);
+    new Audio("./music/selectedButton.mp3").play();
+
+    const playerChoice = target.alt;
+    const machineChoice = MACHINE_CHOICES[Math.floor(Math.random() * MACHINE_CHOICES.length)];
+
+    matchAnimation(playerChoice, machineChoice);
 });
 
-chooses.addEventListener('mouseover', (e) => {
-	const audioHover = new Audio('./music/hoverAudio.mp3');
-	audioHover.volume = 1;
-	const target = e.target as HTMLImageElement;
-
-	switch (target.alt) {
-		case 'rock':
-			audioHover.play();
-			break;
-		case 'paper':
-			audioHover.play();
-			break;
-		case 'scissor':
-			audioHover.play();
-			break;
-		default:
-			break;
-	}
+chooses.addEventListener("mouseover", (e) => {
+    const target = e.target as HTMLImageElement;
+    if (MACHINE_CHOICES.includes(target.alt as typeof MACHINE_CHOICES[number])) {
+        new Audio("./music/hoverAudio.mp3").play();
+    }
 });
