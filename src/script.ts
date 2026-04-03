@@ -1,15 +1,15 @@
 import {matchAnimation} from"./scripts/matchLogic.js"
 
-const chooses = document.querySelector("#chooses");
-const audio = document.querySelector("audio");
+const chooses = document.querySelector("#chooses") as HTMLDivElement;
+const audio = document.querySelector("audio") as HTMLAudioElement;
 audio.volume = 0.8;
 
-let chooseOfPlayer;
-let chooseOfMachine;
+let chooseOfPlayer : string;
+let chooseOfMachine : string;
 
-let heartsPlayer = 5;
-let heartsComputer = 5;
-const audiobg = document.getElementById("bgm");
+let heartsPlayer : number = 5;
+let heartsComputer : number = 5;
+const audiobg = document.getElementById("bgm") as HTMLAudioElement;
 audiobg.volume = 0.2;
 
 document.addEventListener("click", () => {
@@ -24,7 +24,7 @@ chooses.addEventListener("click", async e => {
     audioClicked.play();
     console.log(e.target.alt);
 
-    chooseOfPlayer = e.target.alt;
+    chooseOfPlayer = e.target.alt as string;
     chooseOfMachine = Math.floor(Math.random() * 3) + 1;
 
     switch (chooseOfMachine){
@@ -48,7 +48,7 @@ chooses.addEventListener("mouseover", e => {
     const audioHover = new Audio("./music/hoverAudio.mp3");
     audioHover.volume = 1;
 
-    switch(e.target.alt){
+    switch(e.target.alt as string){
         case "rock":
             audioHover.play();
             break;
