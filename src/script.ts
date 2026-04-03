@@ -1,4 +1,4 @@
-import { matchAnimation } from './scripts/matchLogic.ts';
+import { matchAnimation } from './scripts/matchLogic';
 
 const chooses = document.querySelector('#chooses') as HTMLDivElement;
 const audio = document.querySelector('audio') as HTMLAudioElement;
@@ -42,7 +42,7 @@ chooses.addEventListener('click', async (e) => {
 			console.log('Choose a valid value');
 			break;
 	}
-	matchAnimation(chooseOfPlayer, chooseOfMachine);
+	matchAnimation(chooseOfPlayer, chooseOfMachine as string);
 });
 
 chooses.addEventListener('mouseover', (e) => {
